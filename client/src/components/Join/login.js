@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 let socket;
 
-const Join = () => {
+const Login = () => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,12 +13,6 @@ const Join = () => {
   useEffect(() => {
     const ENDPOINT = "localhost:9999";
     socket = io(ENDPOINT);
-  
-    socket.on("create.error", (check) => {
-      if (!check) {
-        alert("Username has been used!");
-      }
-    });
 
     socket.on("login.error", (check) => {
       if (check) {
@@ -28,18 +22,12 @@ const Join = () => {
 
     socket.on('authen.success', (authen) => {
       var token = authen.token;
-      alert("Successful!");
+      alert("Successfully login..!!!");
       history.push(`/chat?name=${authen.profile}&token=${token}`)
     })
 
 
   }, [history]);
-
-  const handleRegister = () => {
-    socket.emit("register", { name, password });
-
-
-  };
 
   const handleLogin = () => {
     socket.emit("login", { name, password });
@@ -73,14 +61,9 @@ const Join = () => {
           className="btn mt-4">
           Sign In
           </button>
-        <button
-          onClick={handleRegister}
-          className="btn mt-4">
-          Register
-        </button>
       </div>
     </div>
   );
 };
 
-export default Join;
+export default Login;

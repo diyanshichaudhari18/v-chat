@@ -202,8 +202,8 @@ const Chat = ({ location }) => {
         </div>
         <div className="d-lg-flex flex-column justify-content-start flex-fill">
           
-          {room === "welcome" ? (<div className="mt-5 text-muted align-self-center"><h5>Welcome to messengau!</h5>
-          <h5>Create or select a room to start chatting.</h5></div>) : (<>
+          {room === "welcome" ? (<div className="mt-5 text-muted align-self-center"><h5>Welcome to v-chat</h5>
+          <h5>Create/select a room to start chat.</h5></div>) : (<>
             <Messages messages={messages} name={name} />
             <Input
               message={message}
